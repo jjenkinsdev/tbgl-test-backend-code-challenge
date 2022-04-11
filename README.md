@@ -1,4 +1,4 @@
-# TBGL/Sagiss Back-end Developer Test
+# TBGL Back-end Developer Test
 
 Make sure you read the whole document carefully and follow the guidelines in it.
 
@@ -32,7 +32,7 @@ Build a RESTful API that can `get/create/update/delete` user data from a persist
 ### Tech stack
 
 - Use Node.js and any framework.
-- Use any DB. NoSQL DB is preferred.
+- Use any DB. Mongodb is preferred.
 
 ### Bonus
 
