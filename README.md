@@ -1,13 +1,8 @@
-# TBGL Back-end Developer Test
+# Code challenge APP
 
-Make sure you read the whole document carefully and follow the guidelines in it.
+MVP ask is to create a RESTful API with full CRUD functionality around a User object using a Node.js. For this project we used express as the backend framework which uses mongoose ODM to interact with a MongoDB instance. 
 
-## Context
-
-Build a RESTful API that can `get/create/update/delete` user data from a persistence database
-
-### User Model
-
+# Example User model
 ```
 {
   "id": "xxx",                  // user ID 
@@ -18,45 +13,58 @@ Build a RESTful API that can `get/create/update/delete` user data from a persist
   "createdAt": ""               // user created date
 }
 ```
-
 ## Requirements
+Node 16
+## Common Setup
+```
+git clone https://github.com/jjenkinsdev/tbgl-test-backend-code-challenge.git
+cd my-app
+```
+```
+npm install
+```
+## Run app locally
+This command will need to be ran in the projects root directory
+```
+node server.js
+```
+## POST
+create a user using **curl** /user
+```
+curl --location --request POST 'localhost:3000/user/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": "1",
+    "name":"Bob",
+    "dob": "2022-01-01",
+    "address": "123 park lane",
+    "description": "test description"
+}'
+```
+## GET
+get a list of all users using **curl** /users
+```
+curl --location --request GET 'localhost:3000/users/' \
+--data-raw ''
+```
+## PATCH
+update a record using **curl** /user/{_id}
 
-### Functionality
+you will need to copy _id from the response body after making a POST like the above POST.
 
-- The API should follow typical RESTful API design pattern.
-- The data should be saved in the DB.
-- Write clear documentation on how it's designed and how to run the code.
-- Write good in-code comments.
-- Write good commit messages.
+ex. 6256680396da71c92b3ae3e9
+```
+curl --location --request PATCH 'localhost:3000/user/62566a6596da71c92b3ae3ec' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "UD":1
+    "address": "123 park lane update"
+}'
+```
+## DELETE
+Delete a user using **curl** /users/{_id}
 
-### Tech stack
-
-- Use Node.js and any framework.
-- Use any DB. Mongodb is preferred.
-
-### Bonus
-
-- Provide proper unit test.
-- Provide proper API document.
-- An online demo is always welcome.
-
-### Advanced requirements
-
-*These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.*
-
-- Provide a complete user auth (authentication/authorization/etc.) strategy, such as OAuth.
-- Provide a complete logging (when/how/etc.) strategy.
-- Imagine we have a new requirement right now that the user instances need to link to each other, i.e., a list of "followers/following" or "friends". Can you find out how you would design the model structure and what API you would build for querying or modifying it?
-- Related to the requirement above, suppose the address of user now includes a geographic coordinate(i.e., latitude and longitude), can you build an API that,
-  - given a user name
-  - return the nearby friends
-
-
-## What We Care About
-
-Feel free to use any open-source library as you see fit, but remember that we are evaluating your coding skills and problem solving skills.
-
-Here's what you should aim for:
-
-- Good use of current Node.js & API design best practices.
-- Documentation.
+```
+curl --location --request DELETE 'localhost:3000/user/62566a6596da71c92b3ae3ec' \
+--data-raw ''
+```
