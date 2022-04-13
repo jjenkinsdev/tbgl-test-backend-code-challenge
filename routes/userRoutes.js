@@ -28,12 +28,13 @@ app.get("/users", async (request, response) => {
 
 //update user
 app.patch("/user/:id", async (request, response) => {
-    try {
-      await userModel.findByIdAndUpdate(request.params.id, request.body);
-      await userModel.save();
-      response.send(user);
+  try {
+    await userModel.findByIdAndUpdate(request.params.id, request.body);
+    await userModel.save();
+    
+    response.send(user);
     } catch (error) {
-      response.status(500).send(error);
+    response.status(500).send(error);
     }
   });
 
@@ -41,12 +42,12 @@ app.patch("/user/:id", async (request, response) => {
 app.delete("/user/:id", async (request, response) => {
   try {
     const user = await userModel.findByIdAndDelete(request.params.id);
-
+      
     if (!user) response.status(404).send("No user found");
     response.status(200).send();
-  } catch (error) {
+    } catch (error) {
     response.status(500).send(error);
-  }
+    }
 });
 
 module.exports = app;
